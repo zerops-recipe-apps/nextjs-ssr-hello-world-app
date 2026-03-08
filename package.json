@@ -2,6 +2,7 @@
   "name": "nextjs-ssr-hello-world",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "prebuild": "node scripts/generate-build-info.js",
     "build": "next build",
