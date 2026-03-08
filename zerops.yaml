@@ -9,6 +9,12 @@ zerops:
       buildCommands:
         # npm ci installs exact locked versions - reproducible builds.
         - npm ci
+        # Bundle migrate.js + pg into a self-contained migrate.cjs
+        # so initCommands can run it without NODE_PATH gymnastics.
+        # pg is traced by @vercel/nft into .next/standalone/node_modules
+        # but migrate.js runs before the server starts, so bundling is
+        # the cleanest solution.
+        - node scripts/bundle-migrate.mjs
         # prebuild script (generate-build-info.js) writes version +
         # timestamp to build-info.json, then next build compiles the
         # standalone bundle with @vercel/nft import tracing.
@@ -22,7 +28,7 @@ zerops:
         - .next/static
         - public
         - build-info.json
-        - migrate.js
+        - migrate.cjs
 
       cache:
         # Do NOT cache .next/cache - Zerops cache restoration causes
@@ -44,9 +50,9 @@ zerops:
         # zsc execOnce ensures migration runs exactly once per
         # deploy version across all containers - prevents race
         # conditions when minContainers > 1.
-        # NODE_PATH points to pg bundled inside standalone -
-        # it is not in /var/www/node_modules at runtime.
-        - zsc execOnce ${appVersionId} -- sh -c 'NODE_PATH=/var/www/.next/standalone/node_modules node migrate.js'
+        # migrate.cjs is esbuild-bundled with pg included, so it
+        # runs without any external node_modules.
+        - zsc execOnce ${appVersionId} -- node migrate.cjs
 
       ports:
         - port: 3000
@@ -90,8 +96,8 @@ zerops:
 
       initCommands:
         # Migration runs on first deploy so the database is ready
-        # when the developer SSHs in. Dev has node_modules deployed,
-        # so migrate.js can use pg directly.
+        # when the developer SSHs in. Dev has node_modules deployed
+        # alongside source, so migrate.js uses pg from node_modules.
         - zsc execOnce ${appVersionId} -- node migrate.js
 
       ports:
