@@ -159,7 +159,7 @@ export async function GET() {
     <table>
       <tr>
         <td>Framework</td>
-        <td>Next.js ${buildInfo.version}</td>
+        <td>Next.js</td>
       </tr>
       <tr>
         <td>Environment</td>

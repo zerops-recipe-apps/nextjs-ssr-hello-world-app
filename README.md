@@ -1,7 +1,7 @@
-# Next.js SSR Hello World Recipe App
+# Next.js 16 SSR Hello World Recipe App
 
 <!-- #ZEROPS_EXTRACT_START:intro# -->
-A minimal Next.js 15 application using standalone output mode, connecting to PostgreSQL for server-side rendering. Demonstrates the complete SSR stack on Zerops: standalone build, idempotent database migration with `zsc execOnce`, and a live health check that queries the database on every request.
+A minimal Next.js 16 application using standalone output mode, connecting to PostgreSQL for server-side rendering. Demonstrates the complete SSR stack on Zerops: standalone build, idempotent database migration with `zsc execOnce`, and a live health check that queries the database on every request.
 <!-- #ZEROPS_EXTRACT_END:intro# -->
 
 Used within [Next.js SSR Hello World recipe](https://app.zerops.io/recipes/nextjs-ssr-hello-world) for [Zerops](https://zerops.io) platform.
@@ -141,7 +141,7 @@ zerops:
 <!-- #ZEROPS_EXTRACT_START:integration-guide# -->
 ### 2. Key Configuration Points
 
-**Standalone mode** (`output: 'standalone'` in `next.config.mjs`): Next.js traces all imports at build time using `@vercel/nft` and bundles only the required modules into `.next/standalone/`. No `node_modules` directory is needed at runtime — the standalone folder is self-contained.
+**Standalone mode** (`output: 'standalone'` in `next.config.ts`): Next.js traces all imports at build time using `@vercel/nft` and bundles only the required modules into `.next/standalone/`. No `node_modules` directory is needed at runtime — the standalone folder is self-contained.
 
 **Three deploy artifacts**: Standalone mode does NOT automatically include `.next/static/` or `public/` inside the standalone folder. All three must be listed separately in `deployFiles` so the runtime server can find them.
 

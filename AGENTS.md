@@ -1,6 +1,6 @@
 # nextjs-ssr-hello-world-app
 
-Next.js 15 SSR starter: standalone output, PostgreSQL, migration guarded by `zsc execOnce` — baseline Next.js SSR recipe on Zerops.
+Next.js 16 SSR starter: standalone output, PostgreSQL, migration guarded by `zsc execOnce` — baseline Next.js SSR recipe on Zerops.
 
 ## Zerops service facts
 
@@ -19,6 +19,6 @@ Next.js 15 SSR starter: standalone output, PostgreSQL, migration guarded by `zsc
 
 ## Notes
 
-- `output: 'standalone'` + `@vercel/nft` dep tracing — no `node_modules` at prod runtime.
+- `next.config.ts` sets `output: 'standalone'` + `@vercel/nft` dep tracing — no `node_modules` at prod runtime.
 - `migrate.cjs` is esbuild-bundled (`migrate.js` + `pg`) so it runs before the server without NODE_PATH gymnastics.
 - Do NOT cache `.next/cache` — Zerops cache restore causes EACCES on subsequent builds.
