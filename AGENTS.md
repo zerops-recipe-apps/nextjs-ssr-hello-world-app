@@ -22,4 +22,5 @@ Next.js 16 SSR starter: standalone output, PostgreSQL, migration guarded by `zsc
 - `next.config.ts` sets `output: 'standalone'` + `@vercel/nft` dep tracing — no `node_modules` at prod runtime.
 - `migrate.cjs` is esbuild-bundled (`migrate.js` + `pg`) so it runs before the server without NODE_PATH gymnastics.
 - Prod build uses `npm ci --include=dev` — Zerops sets `NODE_ENV=production`, which omits devDependencies (TypeScript, esbuild) unless explicitly included.
+- `ignore-scripts=true` in `.npmrc` blocks npm `prebuild`; run `node scripts/generate-build-info.js` explicitly in `zerops.yaml` before `npm run build`.
 - Do NOT cache `.next/cache` — Zerops cache restore causes EACCES on subsequent builds.
