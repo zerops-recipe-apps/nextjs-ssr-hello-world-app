@@ -15,6 +15,8 @@ zerops:
         # but migrate.js runs before the server starts, so bundling is
         # the cleanest solution.
         - node scripts/bundle-migrate.mjs
+        # ignore-scripts=true in .npmrc skips npm prebuild — run explicitly.
+        - node scripts/generate-build-info.js
         # prebuild script (generate-build-info.js) writes version +
         # timestamp to build-info.json, then next build compiles the
         # standalone bundle with @vercel/nft import tracing.
