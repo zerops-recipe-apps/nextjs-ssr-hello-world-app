@@ -6,9 +6,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zerops-recipe-apps/nextjs-ssr-hello-world-app"
+    "url": "https://github.com/zerops-recipe-apps/nextjs-ssr-hello-world-app.git"
   },
-  "homepage": "https://github.com/zerops-recipe-apps/nextjs-ssr-hello-world-app",
+  "homepage": "https://app.zerops.io/recipes/nextjs-ssr-hello-world",
   "bugs": {
     "url": "https://github.com/zerops-recipe-apps/nextjs-ssr-hello-world-app/issues"
   },
@@ -24,17 +24,17 @@
     "start": "node .next/standalone/server.js"
   },
   "dependencies": {
-    "next": "^16.2.11",
-    "pg": "^8.13.3",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "next": "16.4.0",
+    "pg": "8.23.1",
+    "react": "19.3.0",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
-    "@types/pg": "^8.11.11",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "esbuild": "^0.25.0",
+    "@types/node": "26.1.1",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "esbuild": "0.25.10",
     "typescript": "5.9.3"
   },
   "overrides": {
@@ -43,9 +43,11 @@
   },
   "keywords": [
     "nextjs",
+    "react",
     "zerops",
     "ssr",
     "standalone",
-    "postgresql"
+    "postgresql",
+    "hello-world"
   ]
 }
